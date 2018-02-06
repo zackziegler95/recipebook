@@ -45,7 +45,7 @@ class BudgetBytes(RecipeParser):
     def getDirections(self):
         """Return a list or a map of the preparation instructions"""
         data = []
-        for node in self.tree.xpath('//div[@class="wprm-recipe-instruction-text"]/p'):
+        for node in self.tree.xpath('//div[@class="wprm-recipe-instruction-text"]'):
             data.append( ''.join(node.xpath('descendant-or-self::text()')).strip() )
         return data
 

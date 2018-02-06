@@ -1,9 +1,7 @@
 import sys
 from urllib.parse import urlsplit
 
-from .sites import *
-from .sites import site_classes
-from .sites import site_urls
+from  recipe_parser import *
 
 if __name__ == '__main__':
 
@@ -18,5 +16,5 @@ if __name__ == '__main__':
     else:
         raise ValueError('netloc %s not understood' % netloc)
 
-    parser.save()
+    print(parser.compose())
 
