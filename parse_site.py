@@ -1,7 +1,9 @@
 import sys
 from urllib.parse import urlsplit
+import json
+from unidecode import unidecode
 
-from  recipe_parser import *
+from recipe_parser import *
 
 if __name__ == '__main__':
 
@@ -16,5 +18,20 @@ if __name__ == '__main__':
     else:
         raise ValueError('netloc %s not understood' % netloc)
 
-    print(parser.compose())
+    data = parser.compose()
+    #print(json.dumps(data))
+    print(data['title'])
+    
+    procedure = ""
+    for x in data['directions']:
+        procedure += x+'<br><br>'
 
+    if len(data['notes']) > 0:
+        procedure += "Notes:<br><br>"
+        for x in data['notes']:
+            procedure += x+'<br><br>'
+
+    print(unidecode(procedure[:-8]))
+
+    print(data['ingredients'])
+    print(data['time'])

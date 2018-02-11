@@ -56,6 +56,7 @@ class RecipeParser:
           'directions': self.getDirections(),
           'notes': self.getNotes(),
           'tags': self.getTags(),
+          'time': self.getTime(),
           'url': self.url
         }
 
@@ -112,3 +113,6 @@ class RecipeParser:
     def getBaseURL(self):
         """Return the base url of the site"""
         raise NotImplementedError('subclasses must override getBaseURL()')
+
+    def getTime(self):
+        raise NotImplementedError('subclasses must override getTime()')

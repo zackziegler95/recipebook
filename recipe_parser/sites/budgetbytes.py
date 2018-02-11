@@ -26,7 +26,7 @@ class BudgetBytes(RecipeParser):
 
         we want just 'Recipe'
         """
-        return ' '.join(self.tree.xpath('//title')[0].text.split('-')[0].strip().split()[:-1])
+        return ''.join(self.tree.xpath('//title')[0].text.split('-')[0].strip())
 
     def getIngredients(self):
         """Return a list or a map of the recipe ingredients"""
@@ -58,3 +58,11 @@ class BudgetBytes(RecipeParser):
 
     def getTags(self):
         return []
+
+    def getTime(self):
+        data = ""
+        node = self.tree.xpath('//div[@class="wprm-recipe-total-time-container"]')[0]
+        for subnode in node[2:]:
+            data += ''.join(subnode.xpath('descendant-or-self::text()')).strip()+' '
+        return data[:-1]
+
